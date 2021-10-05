@@ -1,3 +1,7 @@
+
+
+
+
 let num = 0
 let timer;
 
@@ -10,6 +14,7 @@ $(".list").on("mouseleave",function(){
     timer = setInterval(rolling,20);
 });
 
+//썸네일 클릭시 동적 레이어팝업 -생성-
 $(".list li").on("click",function(e){
     e.preventDefault();
 
@@ -24,7 +29,16 @@ $(".list li").on("click",function(e){
     )
 });
 
+//닫기 버튼 클릭시 -제거-
+//  - 이벤트 위임(Event Delegate) 필요(원래 있는 태그가 아니기 때문) -> 항상 있는 body에게 위임
+$("body").on("click",".pop .btnClose", function(){
+    $(".pop").fadeOut(500,function(){
+        $(this).remove();
+    });
+});
 
+
+//함수 정의
 function rolling(){
     //현재 위치값이 -120보다 작아지면(프레임 밖으로 벗어나면)
     if(num < -240){
