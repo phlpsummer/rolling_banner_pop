@@ -1,18 +1,33 @@
 let num = 0
 let timer;
 
-timer = setInterval(rolling,40);
+timer = setInterval(rolling,20);
 
 $(".list").on("mouseenter",function(){
     clearInterval(timer);
 });
 $(".list").on("mouseleave",function(){
-    timer = setInterval(rolling,40);
+    timer = setInterval(rolling,20);
 });
+
+$(".list li").on("click",function(e){
+    e.preventDefault();
+
+    $("body").append(
+        $("<aside class='pop'>")
+            .fadeIn(500)
+            .append(
+                $("<div class='con'>"),
+                $("<span class='btnClose'>")
+                    .text("close")
+            )
+    )
+});
+
 
 function rolling(){
     //현재 위치값이 -120보다 작아지면(프레임 밖으로 벗어나면)
-    if(num < -120){
+    if(num < -240){
         num = 0;  //0으로 초기화 후
         $(".list").children("li").eq(0).appendTo(".list");  //맨 앞요소를 맨뒤로 보냄
     }
