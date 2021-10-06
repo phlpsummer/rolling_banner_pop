@@ -18,6 +18,11 @@ $(".list").on("mouseleave",function(){
 $(".list li").on("click",function(e){
     e.preventDefault();
 
+    $(".pop").fadeOut(500,function(){
+        $(this).remove();
+    });
+
+
     $("body").append(
         $("<aside class='pop'>")
             .fadeIn(500)
